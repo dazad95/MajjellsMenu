@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: #FAF5EC;
+  --foreground: #2C1A0E;
+  --card: #FFF9F2;
+  --card-foreground: #2C1A0E;
+  --primary: #C8612A;
+  --primary-foreground: #FFF9F2;
+  --secondary: #F2E8D9;
+  --secondary-foreground: #4A2E1A;
+  --muted: #E8DDD0;
+  --muted-foreground: #7A6350;
+  --accent: #D4A843;
+  --accent-foreground: #2C1A0E;
+  --border: rgba(44, 26, 14, 0.12);
+  --ring: #C8612A;
+  --radius: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Fraunces', serif;
+}
+
+/* Hide scrollbar by default */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(44, 26, 14, 0.2);
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+:hover::-webkit-scrollbar-thumb { opacity: 1; }
+
+/* 3D flip card */
+.flip-card {
+  perspective: 1200px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transition: none;
+  }
+  .flip-card.flipped .flip-card-inner {
+    transform: none;
+  }
+  .flip-card-front {
+    display: block;
+  }
+  .flip-card.flipped .flip-card-front {
+    display: none;
+  }
+  .flip-card-back {
+    transform: none;
+    display: none;
+  }
+  .flip-card.flipped .flip-card-back {
+    display: block;
+  }
+}
+
+/* Category scroll */
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+.category-scroll {
+  scrollbar-width: none;
+}
+
+/* Card hover lift */
+@media (hover: hover) {
+  .menu-card-wrapper:not(.flipped):hover {
+    transform: translateY(-4px);
+  }
+}
+
+.menu-card-wrapper {
+  transition: transform 0.25s ease;
+}
